@@ -1,8 +1,8 @@
-use std::{collections::HashSet, i64, io};
+use std::{collections::HashSet, i64};
 
-const INPUT: &'static str = include_str!("../input.txt");
+const INPUT: &str = include_str!("../input.txt");
 
-fn main() -> io::Result<()> {
+fn main() {
     let mut valid_count_one = 0;
     let mut valid_count_two = 0;
     for passport in INPUT.split("\n\n") {
@@ -15,7 +15,6 @@ fn main() -> io::Result<()> {
     }
     println!("Part One: {}", valid_count_one);
     println!("Part Two: {}", valid_count_two);
-    Ok(())
 }
 
 fn is_valid_one(pass: &str) -> bool {
@@ -33,7 +32,7 @@ fn is_valid_one(pass: &str) -> bool {
             required_props.remove(key);
         }
     }
-    return required_props.len() == 0;
+    required_props.is_empty()
 }
 
 fn is_valid_two(pass: &str) -> bool {
@@ -57,7 +56,7 @@ fn is_valid_two(pass: &str) -> bool {
             }
         }
     }
-    return required_props.len() == 0;
+    required_props.is_empty()
 }
 
 fn validate_key(key: &str, val: &str) -> bool {
@@ -80,7 +79,7 @@ fn validate_key(key: &str, val: &str) -> bool {
                 .unwrap_or(0);
 
             // lol idk how 2 rust
-            let unit = &(val.collect::<String>().to_owned())[..];
+            let unit = &(val.collect::<String>())[..];
             match unit {
                 "n" => (59..=76).contains(&num_part),
                 "m" => (150..=193).contains(&num_part),
@@ -89,10 +88,7 @@ fn validate_key(key: &str, val: &str) -> bool {
         }
         "hcl" => match val.strip_prefix('#') {
             None => false,
-            Some(hex_str) => match i64::from_str_radix(hex_str, 16) {
-                Ok(_) => true,
-                Err(_) => false,
-            },
+            Some(hex_str) => i64::from_str_radix(hex_str, 16).is_ok(),
         },
         "ecl" => valid_ecls.contains(val),
         "pid" => val.len() == 9 && val.parse::<i32>().unwrap_or(-1) > 0,

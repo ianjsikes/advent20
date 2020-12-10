@@ -1,6 +1,6 @@
 use std::io::{self, BufRead};
 
-const INPUT: &'static str = include_str!("../input.txt");
+const INPUT: &str = include_str!("../input.txt");
 
 fn main() -> io::Result<()> {
     let mut max_seat_id = 0;
@@ -52,10 +52,10 @@ fn main() -> io::Result<()> {
 
 fn front_half(min: usize, max: usize) -> (usize, usize) {
     let range = max - min + 1;
-    return (min + range / 2, max);
+    (min + range / 2, max)
 }
 
 fn back_half(min: usize, max: usize) -> (usize, usize) {
     let range = max - min + 1;
-    return (min, max - range / 2);
+    (min, max - range / 2)
 }

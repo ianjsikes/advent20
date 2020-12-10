@@ -1,6 +1,6 @@
 use std::io::{self, BufRead};
 
-const INPUT: &'static str = include_str!("../input.txt");
+const INPUT: &str = include_str!("../input.txt");
 
 fn main() -> io::Result<()> {
     let mut product = 1;
@@ -24,8 +24,8 @@ fn num_trees(input: &str, down_step: usize, right_step: usize) -> io::Result<usi
         let line = line?;
 
         x_pos += right_step;
-        x_pos = x_pos % line.len();
-        let char_at_pos = line.chars().skip(x_pos).next().unwrap();
+        x_pos %= line.len();
+        let char_at_pos = line.chars().nth(x_pos).unwrap();
         if char_at_pos == '#' {
             tree_count += 1;
         }

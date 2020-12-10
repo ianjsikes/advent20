@@ -1,6 +1,6 @@
 use std::io::{self, BufRead};
 
-const INPUT: &'static str = include_str!("../input.txt");
+const INPUT: &str = include_str!("../input.txt");
 
 fn main() -> io::Result<()> {
     part_one()?;

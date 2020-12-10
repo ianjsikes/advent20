@@ -33,8 +33,7 @@ pub fn part_two() {
         let inner_target = target - num1;
         let mut diff_set: HashSet<i32> = HashSet::new();
 
-        for x in (idx + 1)..(numbers.len() - 1) {
-            let num2 = numbers[x];
+        for &num2 in numbers.iter().skip(idx) {
             let diff = inner_target - num2;
             if diff_set.contains(&diff) {
                 println!("Part Two Solution {}", diff * num2 * num1);

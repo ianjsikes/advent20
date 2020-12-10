@@ -1,8 +1,8 @@
-use std::{collections::HashMap, io};
+use std::collections::HashMap;
 
 const INPUT: &str = include_str!("../input.txt");
 
-fn main() -> io::Result<()> {
+fn main() {
     let mut first_sum = 0;
     let mut second_sum = 0;
     for group in INPUT.split("\n\n") {
@@ -23,5 +23,4 @@ fn main() -> io::Result<()> {
     }
     println!("Part One: {}", first_sum);
     println!("Part Two: {}", second_sum);
-    Ok(())
 }

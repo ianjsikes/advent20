@@ -3,7 +3,7 @@
 use regex::Regex;
 use std::{
     collections::{HashMap, HashSet},
-    io, mem,
+    mem,
 };
 
 const INPUT: &str = include_str!("../input.txt");
